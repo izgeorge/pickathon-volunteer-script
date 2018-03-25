@@ -12,6 +12,8 @@ response = soup(urllib2.urlopen(url), 'lxml')
 content = response.find(name='div', attrs={'class': 'content'})
 
  # set the old snapshot of webpage to compare
+ # should probably just save the file to compare since the url is hard coded but
+ # maybe in the future user could be prompted for a url so this would be handy
 if (os.path.isfile(file_path)):
     download = open(file_path, 'rb')
     unserialized_content = pickle.load(download)
@@ -23,8 +25,10 @@ else:
     pickle.dump(content, download)
     download.close()
 
+print 'not'
 # send email if the snapshot is not empty and content has changed
-if (content != snapshot && snapshot != ''):
+if (content != snapshot and snapshot != ''):
+    print 'sending'
     msg = 'Subject: PICKATHON VOLUNTEER OPPORTUNITIES ARE UP'
     fromaddr = 'YOUR_EMAIL'
     toaddrs  = ['EMAIL_ADDRESS_1, EMAIL_ADDRESS_2']
