@@ -25,10 +25,8 @@ else:
     pickle.dump(content, download)
     download.close()
 
-print 'not'
 # send email if the snapshot is not empty and content has changed
 if (content != snapshot and snapshot != ''):
-    print 'sending'
     msg = 'Subject: PICKATHON VOLUNTEER OPPORTUNITIES ARE UP'
     fromaddr = 'YOUR_EMAIL'
     toaddrs  = ['EMAIL_ADDRESS_1, EMAIL_ADDRESS_2']
