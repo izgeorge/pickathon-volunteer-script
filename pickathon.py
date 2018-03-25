@@ -23,23 +23,16 @@ else:
     pickle.dump(content, download)
     download.close()
 
-if (content != snapshot):
-    # create an email message with just a subject line,
+# send email if the snapshot is not empty and content has changed
+if (content != snapshot && snapshot != ''):
     msg = 'Subject: PICKATHON VOLUNTEER OPPORTUNITIES ARE UP'
-    # set the 'from' address,
     fromaddr = 'YOUR_EMAIL'
-    # set the 'to' addresses,
     toaddrs  = ['EMAIL_ADDRESS_1, EMAIL_ADDRESS_2']
 
     # setup the email server,
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     server.login('YOUR_EMAIL', 'YOUR_PASSWORD')
-
-    # Print the email's contents
-    print('From: ' + fromaddr)
-    print('To: ' + str(toaddrs))
-    print('Message: ' + msg)
 
     # send the email
     server.sendmail(fromaddr, toaddrs, msg)
